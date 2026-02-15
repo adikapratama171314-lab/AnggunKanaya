@@ -7,7 +7,141 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            background-color: #0a0a0a; 
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Latar Belakang Animasi Bintang */
+        .stars-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+            z-index: -1;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Animasi Profil Melayang */
+        @keyframes floating {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .profile-container {
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid rgba(251, 207, 232, 0.3);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 10;
+            cursor: pointer;
+            box-shadow: 0 0 50px rgba(251, 207, 232, 0.2);
+            animation: floating 4s ease-in-out infinite;
+            transition: 0.5s;
+        }
+        
+        .profile-container:hover { 
+            transform: scale(1.1); 
+            border-color: #fbcfe8;
+            box-shadow: 0 0 60px rgba(251, 207, 232, 0.4);
+        }
+        .profile-container img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Polaroid Grid 2x2 */
+        .polaroid-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .polaroid-frame {
+            background: #ffffff;
+            padding: 0.5rem;
+            padding-bottom: 1.2rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            width: 140px; 
+            border: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: 0.4s ease;
+        }
+        .polaroid-frame img { 
+            width: 100%; 
+            height: 130px; 
+            object-fit: cover;
+        }
+        .polaroid-frame:hover {
+            transform: translateY(-10px) scale(1.1) !important;
+            z-index: 50;
+        }
+
+        .click-hint {
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: #fbcfe8;
+            animation: blink 2s infinite;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        @keyframes blink { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+
+        .music-bar {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            color: #ffffff;
+            padding: 10px 25px;
+            border-radius: 100px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            opacity: 0;
+            transition: 1.5s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* Partikel Cahaya */
+        .particle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(1px);
+            animation: float-up linear infinite;
+        }
+
+        @keyframes float-up {
+            from { transform: translateY(110vh) scale(0); opacity: 0; }
+            50% { opacity: 0.6; }
+            to { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+
+        .serif-text { font-family: 'Cormorant Garamond', serif; }
+    </style>
 </head>
 <body>
 
@@ -18,7 +152,7 @@
         <div class="profile-container" onclick="startEverything()" data-aos="zoom-in">
             <img src="https://image2url.com/r2/default/images/1771174485673-5a89cacd-79d6-449c-a5e0-cce067c6666c.jpg" alt="Anggun Kanaya">
         </div>
-        <div id="hint1" class="click-hint mb-10">klik foto profil</div>
+        <div id="hint1" class="click-hint mb-10">klik foto</div>
 
         <h1 class="serif-text text-5xl md:text-7xl mb-4 font-light tracking-wide" data-aos="fade-up">
             Anggun Kanaya
@@ -30,10 +164,92 @@
 
     <section class="py-32 px-6">
         <div class="max-w-4xl mx-auto text-center">
+            
             <div class="mb-16" data-aos="fade-up">
                 <h3 class="serif-text text-4xl mb-6 italic text-pink-100">Catatan Kecil</h3>
                 <p class="text-gray-400 leading-relaxed text-sm max-w-sm mx-auto font-light italic">
                     "Menyeimbangkan dunia kerja dan kuliah memang melelahkan, tapi apa yang kamu usahakan hari ini adalah tabungan untuk masa depanmu nanti."
+                </p>
+                <div class="w-12 h-[1px] bg-pink-200/20 mx-auto mt-8"></div>
+            </div>
+
+            <div class="polaroid-grid">
+                <div class="polaroid-frame" onclick="startEverything()" style="transform: rotate(-3deg);" data-aos="flip-left">
+                    <img src="https://image2url.com/r2/default/images/1771174521659-e50eef67-1cdd-4aa9-8959-9c5fba85b072.jpg">
+                </div>
+                <div class="polaroid-frame" onclick="startEverything()" style="transform: rotate(2deg);" data-aos="flip-right">
+                    <img src="https://image2url.com/r2/default/images/1771174534560-02a1097a-4212-461f-a277-74822d3059d3.jpg">
+                </div>
+                <div class="polaroid-frame" onclick="startEverything()" style="transform: rotate(4deg);" data-aos="flip-left">
+                    <img src="https://image2url.com/r2/default/images/1771174546575-784d06c7-5d2d-4c58-a9d5-2d8ca488efc0.jpg">
+                </div>
+                <div class="polaroid-frame" onclick="startEverything()" style="transform: rotate(-5deg);" data-aos="flip-right">
+                    <img src="https://image2url.com/r2/default/images/1771174556783-1f6b9b02-0ce6-46d8-a2b4-5e2862687659.jpg">
+                </div>
+            </div>
+
+            <p class="text-[9px] text-gray-500 tracking-[0.4em] uppercase mt-20">© Anggun Kanaya Putri • 2026</p>
+        </div>
+    </section>
+
+    <div id="musicBar" class="music-bar shadow-2xl" onclick="toggleMusic(event)">
+        <span id="music-status">BERHENTI</span>
+        <div class="flex gap-1 items-end h-3">
+            <div class="w-1 bg-white animate-bounce"></div>
+            <div class="w-1 bg-white animate-bounce" style="animation-delay: 0.2s"></div>
+            <div class="w-1 bg-white animate-bounce" style="animation-delay: 0.4s"></div>
+        </div>
+    </div>
+
+    <audio id="bgSong" loop>
+        <source src="https://image2url.com/r2/default/audio/1771177677054-0fd8ffab-be87-4e1b-bfe7-1fb7b1d12461.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1500, once: true });
+
+        const song = document.getElementById('bgSong');
+        let playing = false;
+
+        function startEverything() {
+            if (!playing) {
+                song.play();
+                playing = true;
+                document.getElementById('hint1').style.display = 'none';
+                document.getElementById('musicBar').style.opacity = '2';
+                // Mulai efek partikel melayang
+                setInterval(createParticle, 30);
+            }
+        }
+
+        function toggleMusic(e) {
+            e.stopPropagation();
+            if (song.paused) {
+                song.play();
+                document.getElementById('music-status').innerText = 'BERHENTI';
+            } else {
+                song.pause();
+                document.getElementById('music-status').innerText = 'PUTAR';
+            }
+        }
+
+        function createParticle() {
+            const container = document.getElementById('particle-container');
+            const particle = document.createElement('div');
+            const size = Math.random() * 4 + 1 + 'px';
+            particle.classList.add('particle');
+            particle.style.width = size;
+            particle.style.height = size;
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDuration = Math.random() * 5 + 5 + 's';
+            particle.style.background = `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.2})`;
+            container.appendChild(particle);
+            setTimeout(() => particle.remove(), 8000);
+        }
+    </script>
+</body>
+</html>
                 </p>
                 <div class="w-12 h-[1px] bg-pink-200/20 mx-auto mt-8"></div>
             </div>
