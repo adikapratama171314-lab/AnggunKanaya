@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anggun Kanaya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="stars-bg"></div>
+    <div id="particle-container"></div>
+
+    <section class="hero-section" id="hero">
+        <div class="profile-container" onclick="startEverything()" data-aos="zoom-in">
+            <img src="https://image2url.com/r2/default/images/1771174485673-5a89cacd-79d6-449c-a5e0-cce067c6666c.jpg" alt="Anggun Kanaya">
+        </div>
+        <div id="hint1" class="click-hint mb-10">klik foto profil</div>
+
+        <h1 class="serif-text text-5xl md:text-7xl mb-4 font-light tracking-wide" data-aos="fade-up">
+            Anggun Kanaya
+        </h1>
+        <p class="text-[10px] opacity-60 tracking-[0.6em] uppercase font-light" data-aos="fade-up" data-aos-delay="300">
+            Semangat kerja & kuliahnya
+        </p>
+    </section>
+
+    <section class="py-32 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="mb-16" data-aos="fade-up">
+                <h3 class="serif-text text-4xl mb-6 italic text-pink-100">Catatan Kecil</h3>
+                <p class="text-gray-400 leading-relaxed text-sm max-w-sm mx-auto font-light italic">
+                    "Menyeimbangkan dunia kerja dan kuliah memang melelahkan, tapi apa yang kamu usahakan hari ini adalah tabungan untuk masa depanmu nanti."
+                </p>
+                <div class="w-12 h-[1px] bg-pink-200/20 mx-auto mt-8"></div>
+            </div>
+
+            <div class="polaroid-grid">
+                <div class="polaroid-frame" onclick="startEverything()" style="transform: rotate(-3deg);" data-aos="flip-left">
+                    <img src="https://image2url.com/r2/default/images/1771174521659-e50eef67-1cdd-4aa9-8959-9c5fba85b072.jpg">
+                </div>
+                <div class="polaroid-frame" onclick="startEverything()" style="transform: rotate(2deg);" data-aos="flip-right">
+                    <img src="https://image2url.com/r2/default/images/1771174534560-02a1097a-4212-461f-a277-74822d3059d3.jpg">
+                </div>
+                <div class="polaroid-frame" onclick="startEverything()" style="transform: rotate(4deg);" data-aos="flip-left">
+                    <img src="https://image2url.com/r2/default/images/1771174546575-784d06c7-5d2d-4c58-a9d5-2d8ca488efc0.jpg">
+                </div>
+                <div class="polaroid-frame" onclick="startEverything()" style="transform: rotate(-5deg);" data-aos="flip-right">
+                    <img src="https://image2url.com/r2/default/images/1771174556783-1f6b9b02-0ce6-46d8-a2b4-5e2862687659.jpg">
+                </div>
+            </div>
+
+            <p class="text-[9px] text-gray-500 tracking-[0.4em] uppercase mt-20">© Anggun Kanaya Putri • 2026</p>
+        </div>
+    </section>
+
+    <div id="musicBar" class="music-bar shadow-2xl" onclick="toggleMusic(event)">
+        <span id="music-status">BERHENTI</span>
+        <div class="flex gap-1 items-end h-3">
+            <div class="w-1 bg-white animate-bounce"></div>
+            <div class="w-1 bg-white animate-bounce" style="animation-delay: 0.2s"></div>
+            <div class="w-1 bg-white animate-bounce" style="animation-delay: 0.4s"></div>
+        </div>
+    </div>
+
+    <audio id="bgSong" loop>
+        <source src="
